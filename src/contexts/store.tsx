@@ -87,7 +87,7 @@ export const StoreProvider: React.FC = ({ children }) => {
     }
   }
 
-  const debouncedFilter = useDebounce(filter, 400)
+  const debouncedFilter = useDebounce(filter, 280)
 
   useEffect(() => {
     searchCharacters(debouncedFilter)
