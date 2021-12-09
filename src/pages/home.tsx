@@ -13,11 +13,16 @@ import Icon from 'components/Icon'
 import CharacterCard from 'components/CharacterCard'
 import CharacterDetails from 'components/CharacterDetails'
 
+import { useSelector } from 'store'
 import { useStore } from 'hooks/useStore'
-import { CharacterType } from 'contexts/store'
+import { CharacterType } from 'store/ducks/characterSlice'
 
 const Home: React.FC = () => {
-  const { characters, filter, loading, setFilter, details } = useStore()
+  const { filter, setFilter, details } = useStore()
+
+  const isLoading = useSelector(state => state.character.isLoading)
+  const isError = useSelector(state => state.character.isError)
+  const characters = useSelector(state => state.character.characters)
 
   if (details.stories) {
     return <CharacterDetails character={details} />
@@ -103,10 +108,13 @@ const Home: React.FC = () => {
         </Grid>
 
         <Box width="100%" paddingBottom="80px" position="relative">
-          {loading && [1, 2, 3, 4].map(number => <CharacterCard key={number} loading />)}
-          {characters.map((character: CharacterType, index) => (
-            <CharacterCard key={index} character={character} />
-          ))}
+          {isLoading &&
+            [1, 2, 3, 4].map(number => <CharacterCard key={number} loading />)}
+          {isError && 'Erro ao carregar personagens'}
+          {!isError &&
+            characters.map((character: CharacterType, index) => (
+              <CharacterCard key={index} character={character} />
+            ))}
         </Box>
       </Flex>
     </Flex>

@@ -4,9 +4,13 @@ import { Flex } from '@chakra-ui/react'
 import Paginator from 'components/Paginator'
 
 import { useStore } from 'hooks/useStore'
+import { useSelector } from 'store'
 
 const Footer: React.FC = () => {
-  const { page, total, offset, onChangePage } = useStore()
+  const { page, onChangePage } = useStore()
+
+  const offset = useSelector(state => state.character.offset)
+  const total = useSelector(state => state.character.total)
 
   const onPageChanged = useCallback(
     page => {

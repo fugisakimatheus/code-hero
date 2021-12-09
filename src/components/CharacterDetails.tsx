@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 import { Grid, Heading, Image, GridItem, Button } from '@chakra-ui/react'
 
-import { CharacterType } from 'contexts/store'
 import Icon from './Icon'
 import { useStore } from 'hooks/useStore'
+import { CharacterType } from 'store/ducks/characterSlice'
 
 type CharacterDetailsType = {
   character: CharacterType

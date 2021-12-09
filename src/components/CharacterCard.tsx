@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Grid, Box, Heading, Image, Skeleton } from '@chakra-ui/react'
 
-import { CharacterType } from 'contexts/store'
 import { useStore } from 'hooks/useStore'
+import { CharacterType } from 'store/ducks/characterSlice'
 
 type CharacterCardType = {
   key?: number
